@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salah Abdi — IT Support Professional</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f4f0;
+    --accent: #00e5a0;
+    --grey: #888;
+    --card: #141414;
+    --border: #222;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nav-logo span { color: var(--accent); }
+  .nav-logo-location {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    color: var(--grey);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    max-width: 800px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid rgba(0,229,160,0.3);
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .hero h1 .line2 { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--grey);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+  }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  section { padding: 100px 60px; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 60px;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+  .about-text p { color: #bbb; font-weight: 300; line-height: 1.8; margin-bottom: 16px; }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+  }
+  .stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--grey); letter-spacing: 0.05em; }
+  .skills-section { background: #0d0d0d; padding: 100px 0; }
+  .skills-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-category {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    transition: border-color 0.2s;
+  }
+  .skill-category:hover { border-color: rgba(0,229,160,0.3); }
+  .skill-cat-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-size: 0.78rem;
+    color: #ccc;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+  }
+  .exp-list { display: flex; flex-direction: column; gap: 2px; }
+  .exp-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 36px 40px;
+    transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom;
+  }
+  .exp-item:hover { border-color: rgba(0,229,160,0.2); }
+  .exp-item:hover::before { transform: scaleY(1); }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .exp-title { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; }
+  .exp-company { color: var(--accent); font-size: 0.9rem; margin-top: 4px; }
+  .exp-date {
+    font-size: 0.78rem;
+    color: var(--grey);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    white-space: nowrap;
+  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: #aaa;
+    font-weight: 300;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .exp-bullets li::before {
+    content: '·';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.9rem;
+  }
+  .projects-section { background: #0d0d0d; padding: 100px 0; }
+  .projects-inner { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+  .featured-project {
+    background: var(--card);
+    border: 1px solid rgba(0,229,160,0.25);
+    padding: 48px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .featured-project::after {
+    content: '';
+    display: none;
+  }
+  .featured-project::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,229,160,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 36px 40px;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: rgba(0,229,160,0.2); }
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+  }
+  .project-desc { color: #aaa; font-weight: 300; font-size: 0.93rem; line-height: 1.7; margin-bottom: 28px; }
+  .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .tech-tag {
+    font-size: 0.73rem;
+    color: var(--accent);
+    border: 1px solid rgba(0,229,160,0.25);
+    padding: 4px 12px;
+    letter-spacing: 0.05em;
+  }
+  .project-details { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+  .project-detail-block h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--grey);
+    margin-bottom: 12px;
+  }
+  .project-detail-block ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .project-detail-block ul li {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-weight: 300;
+    padding-left: 14px;
+    position: relative;
+  }
+  .project-detail-block ul li::before { content: '·'; position: absolute; left: 0; color: var(--accent); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .contact-text h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .contact-text p { color: var(--grey); font-weight: 300; line-height: 1.7; margin-bottom: 32px; }
+  .contact-links { display: flex; flex-direction: column; gap: 16px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    text-decoration: none;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); transform: translateX(6px); }
+  .contact-link-icon { font-size: 1.1rem; color: var(--accent); width: 20px; text-align: center; }
+  .contact-link-text { font-size: 0.88rem; color: var(--white); }
+  .contact-link-label { font-size: 0.7rem; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-size: 0.8rem; color: var(--grey); }
+  .full-divider { height: 1px; background: var(--border); max-width: 100%; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .exp-outside-toggle {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 20px 24px;
+    background: transparent;
+    border: 1px dashed var(--border);
+    color: var(--grey);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    width: 100%;
+    text-align: left;
+    transition: border-color 0.2s, color 0.2s;
+    margin-top: 2px;
+  }
+  .exp-outside-toggle:hover { border-color: rgba(0,229,160,0.3); color: var(--white); }
+  .exp-outside-toggle .toggle-label { flex: 1; }
+  .exp-outside-toggle .toggle-arrow {
+    font-size: 1rem;
+    color: var(--accent);
+    transition: transform 0.35s ease;
+    display: inline-block;
+  }
+  .exp-outside-toggle.open .toggle-arrow { transform: rotate(180deg); }
+  .exp-outside-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease;
+  }
+  .exp-outside-content.open { max-height: 800px; }
+  .exp-outside-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 2px;
+  }
+  .projects-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  @media (max-width: 768px) {
+    .exp-outside-toggle { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">SALAH ABDI<span class="nav-logo-location">London, UK</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">IT Support · Security & AI Awareness</div>
+    <h1>Salah<br><span class="line2">Abdi</span></h1>
+    <p class="hero-sub">IT Support professional with hands-on experience in troubleshooting and user support, with a growing interest in security practices and AI-driven technologies.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<section id="about">
+  <div class="section-label">Who I am</div>
+  <div class="section-title fade-in">About Me</div>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>I'm an IT Support professional based in London with hands-on experience across service desk and field technician roles. I've supported user bases of 120+, managed multi-environment deployments, and consistently maintained <strong>90%+ first-contact resolution rates</strong>.</p>
+      <p>My background covers Windows 10/11, Microsoft 365, Azure AD, Active Directory, Intune, and ITSM platforms like Jira and ServiceNow. I'm fluent in four languages and comfortable supporting diverse user bases under pressure.</p>
+      <p>Alongside my core IT work, I'm expanding my skills in <strong>security practices and AI-driven technologies</strong>, running hands-on home lab environments and building practical exposure to tools used in modern IT and security operations.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-number">2+</div>
+        <div class="stat-label">Years IT Experience</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">90%+</div>
+        <div class="stat-label">First Contact Resolution</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Languages Spoken</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Home Lab Projects</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<div class="skills-section" id="skills">
+  <div class="skills-inner">
+    <div class="section-label">What I work with</div>
+    <div class="section-title fade-in">Skills & Tools</div>
+    <div class="skills-grid fade-in">
+      <div class="skill-category">
+        <div class="skill-cat-title">Platforms & Systems</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Windows 10/11</span>
+          <span class="skill-tag">Windows Server</span>
+          <span class="skill-tag">Active Directory</span>
+          <span class="skill-tag">Azure AD / Entra ID</span>
+          <span class="skill-tag">Microsoft 365</span>
+          <span class="skill-tag">Exchange Online</span>
+          <span class="skill-tag">SharePoint</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Endpoint & Device</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Intune / MDM</span>
+          <span class="skill-tag">SCCM / MECM</span>
+          <span class="skill-tag">Windows Autopilot</span>
+          <span class="skill-tag">Device Imaging</span>
+          <span class="skill-tag">Group Policy (GPO)</span>
+          <span class="skill-tag">Remote Desktop</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Networking & Security</div>
+        <div class="skill-tags">
+          <span class="skill-tag">TCP/IP</span>
+          <span class="skill-tag">DNS / DHCP</span>
+          <span class="skill-tag">VPN Troubleshooting</span>
+          <span class="skill-tag">MFA & Conditional Access</span>
+          <span class="skill-tag">ITIL Principles</span>
+          <span class="skill-tag">PowerShell Basics</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">ITSM & Ticketing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Jira</span>
+          <span class="skill-tag">ServiceNow</span>
+          <span class="skill-tag">SLA Management</span>
+          <span class="skill-tag">Incident Escalation</span>
+          <span class="skill-tag">Documentation</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Cybersecurity (Learning)</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Wazuh SIEM</span>
+          <span class="skill-tag">Log Analysis</span>
+          <span class="skill-tag">Threat Detection</span>
+          <span class="skill-tag">Splunk (Studying)</span>
+          <span class="skill-tag">CompTIA Sec+ (In Progress)</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-title">Infrastructure & Dev (Practical Exposure)</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux / Ubuntu</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">SSH</span>
+          <span class="skill-tag">VPS Deployment</span>
+          <span class="skill-tag">API Integration</span>
+          <span class="skill-tag">Python Basics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<section id="experience">
+  <div class="section-label">Where I've worked</div>
+  <div class="section-title fade-in">Experience</div>
+  <div class="exp-list fade-in">
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">IT Support Technician</div>
+          <div class="exp-company">Guards On Calls, London</div>
+        </div>
+        <div class="exp-date">Apr 2025 – Nov 2025</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>First point of contact for 120+ users across multiple sites, managing tickets from initial log through to resolution or escalation.</li>
+        <li>Imaged, configured, and deployed mobile devices and equipment to field officers across multiple locations.</li>
+        <li>Diagnosed and resolved hardware, software, and connectivity issues including DNS/DHCP faults, VPN access problems, and user login errors.</li>
+        <li>Maintained an internal knowledge base of common issues and fixes, reducing repeat tickets and improving team efficiency.</li>
+        <li>Tracked and managed device inventory across all sites, keeping records accurate and up to date.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
+          <div class="exp-title">Service Desk Analyst</div>
+          <div class="exp-company">Global Net, London</div>
+        </div>
+        <div class="exp-date">Jun 2024 – Feb 2025</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Logged and prioritised 12+ tickets daily in Jira, consistently meeting SLA targets across phone and email channels.</li>
+        <li>Resolved first-line issues across Windows 10/11, Microsoft 365, Exchange Online, and Teams, escalating with full documentation where needed.</li>
+        <li>Supported end users across IT services and training environments, troubleshooting live course issues to avoid disruption.</li>
+        <li>Managed user accounts in Active Directory and Azure AD, handling provisioning, password resets, permission changes, and MFA setup.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Collapsible: Experience Outside Tech -->
+  <button class="exp-outside-toggle" id="outsideToggle" onclick="toggleOutside()">
+    <span class="toggle-label">Experience Outside Tech</span>
+    <span class="toggle-arrow">⌄</span>
+  </button>
+  <div class="exp-outside-content" id="outsideContent">
+    <div class="exp-outside-inner">
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">International Patients Coordinator</div>
+          </div>
+          <div class="exp-date">2023 – 2024</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Coordinated end-to-end care pathways for international patients, managing appointments, documentation, and follow-up communications across multiple departments.</li>
+          <li>Acted as the primary point of contact between patients and clinical staff, translating complex medical information clearly and accurately.</li>
+          <li>Handled sensitive situations with professionalism and discretion, ensuring a high standard of patient experience throughout.</li>
+          <li>Managed multiple cases simultaneously, prioritising effectively under pressure in a fast-paced environment.</li>
+        </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-title">Interpreter</div>
+          </div>
+          <div class="exp-date">2021 – 2023</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Delivered professional interpretation across English, Somali, Arabic, and Turkish in medical, legal, and community settings.</li>
+          <li>Accurately conveyed complex and sensitive information between parties, maintaining strict neutrality and confidentiality throughout.</li>
+          <li>Built strong working relationships with clients and organisations through reliability, precision, and consistent professionalism.</li>
+          <li>Adapted communication style to the context and audience, ensuring clarity for all parties involved.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<div class="projects-section" id="projects">
+  <div class="projects-inner">
+    <div class="section-label">What I've built</div>
+    <div class="section-title fade-in">Projects</div>
+
+    <div class="featured-project fade-in">
+      <div class="project-title">AI Automation Agent: SalahOS</div>
+      <p class="project-desc">Built a fully autonomous AI agent running 24/7 on a Linux VPS. The system monitors YouTube channels, processes content, and delivers daily reports, all managed remotely via a Telegram bot interface. Built to solve a real content workflow problem and develop practical cloud infrastructure skills outside of formal employment.</p>
+      <div class="project-tech">
+        <span class="tech-tag">OpenClaw</span>
+        <span class="tech-tag">Linux / Ubuntu</span>
+        <span class="tech-tag">Docker</span>
+        <span class="tech-tag">SSH</span>
+        <span class="tech-tag">OpenAI GPT</span>
+        <span class="tech-tag">YouTube Data API</span>
+        <span class="tech-tag">Telegram Bot API</span>
+        <span class="tech-tag">Webshare Proxies</span>
+        <span class="tech-tag">yt-dlp</span>
+        <span class="tech-tag">Hostinger VPS</span>
+      </div>
+      <div class="project-details">
+        <div class="project-detail-block">
+          <h4>What I built</h4>
+          <ul>
+            <li>Deployed a Linux VPS on Hostinger and configured it remotely via SSH</li>
+            <li>Containerised the agent using Docker for clean, isolated deployment</li>
+            <li>Integrated OpenAI API as the core language model</li>
+            <li>Connected YouTube Data API for channel monitoring and new upload detection</li>
+            <li>Configured residential proxies via Webshare to bypass bot detection on server IPs</li>
+            <li>Built a Telegram bot (SalahOS) as a remote command and reporting interface</li>
+          </ul>
+        </div>
+        <div class="project-detail-block">
+          <h4>Outcome</h4>
+          <ul>
+            <li>Agent runs autonomously 24/7 with no manual intervention required</li>
+            <li>Sends daily reports and task summaries directly via Telegram</li>
+            <li>Demonstrated practical skills in Linux, Docker, API integration, and cloud infrastructure</li>
+            <li>Used as a concrete talking point in technical interviews to showcase self-driven learning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-title">Home Lab SIEM: Threat Detection with Wazuh</div>
+      <p class="project-desc">Set up a virtualised home lab to develop practical exposure to security monitoring workflows. Deployed Wazuh as a SIEM to ingest system logs, detect suspicious activity, and practise basic alert triage, building hands-on awareness of security operations tooling.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Wazuh</span>
+        <span class="tech-tag">VirtualBox</span>
+        <span class="tech-tag">Windows Server</span>
+        <span class="tech-tag">Kali Linux</span>
+        <span class="tech-tag">Windows Event Viewer</span>
+        <span class="tech-tag">Sysmon</span>
+      </div>
+      <div class="project-details">
+        <div class="project-detail-block">
+          <h4>What I did</h4>
+          <ul>
+            <li>Set up a virtualised lab with Windows Server VM and Kali Linux attacker machine</li>
+            <li>Deployed Wazuh SIEM and connected Windows agents to forward logs</li>
+            <li>Simulated attacks: brute force logins, port scans, failed authentication events</li>
+            <li>Monitored Windows Event Logs for suspicious activity (Event IDs 4625, 4648, 4720)</li>
+            <li>Configured Wazuh rules to alert on repeated failed logins and unusual behaviour</li>
+            <li>Practised alert triage: identifying false positives, correlating events, documenting findings</li>
+          </ul>
+        </div>
+        <div class="project-detail-block">
+          <h4>Key learnings</h4>
+          <ul>
+            <li>Practical understanding of how SIEMs ingest and correlate log data</li>
+            <li>Recognising indicators of compromise from Windows Event Logs</li>
+            <li>Basic alert triage and investigation workflow</li>
+            <li>Exposure to attacker simulation and defensive response techniques</li>
+            <li>Strengthened general IT security awareness applicable to support roles</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card fade-in">
+      <div class="project-title">Windows Server & Active Directory Home Lab</div>
+      <p class="project-desc">Built a virtualised Windows Server environment to practise core IT infrastructure skills outside of work. Focused on Active Directory setup, user management, DNS/DHCP configuration, and Group Policy. These are the foundational building blocks of enterprise IT support.</p>
+      <div class="project-tech">
+        <span class="tech-tag">VirtualBox</span>
+        <span class="tech-tag">Windows Server 2019</span>
+        <span class="tech-tag">Active Directory DS</span>
+        <span class="tech-tag">DNS / DHCP</span>
+        <span class="tech-tag">Group Policy (GPO)</span>
+        <span class="tech-tag">Windows 10/11 Client</span>
+        <span class="tech-tag">PowerShell</span>
+      </div>
+      <div class="project-details">
+        <div class="project-detail-block">
+          <h4>What I did</h4>
+          <ul>
+            <li>Deployed Windows Server 2019 in VirtualBox and promoted it to a Domain Controller</li>
+            <li>Configured Active Directory DS, created OUs, users, groups, and applied permissions</li>
+            <li>Set up DNS and DHCP services and joined a Windows 10 client machine to the domain</li>
+            <li>Created and applied Group Policy Objects: desktop lockdowns, password policies, drive mappings</li>
+            <li>Used PowerShell to automate bulk user creation and account management tasks</li>
+            <li>Practised common helpdesk scenarios: account unlocks, permission changes, profile issues</li>
+          </ul>
+        </div>
+        <div class="project-detail-block">
+          <h4>Key learnings</h4>
+          <ul>
+            <li>Solid hands-on understanding of AD DS structure and day-to-day administration</li>
+            <li>Practical DNS/DHCP configuration in a domain environment</li>
+            <li>GPO design and troubleshooting relevant to enterprise support roles</li>
+            <li>Basic PowerShell scripting for user management tasks</li>
+            <li>Reinforced skills directly applicable to service desk and IT support work</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-divider"></div>
+
+<section id="contact">
+  <div class="contact-grid fade-in">
+    <div class="contact-text">
+      <div class="section-label">Let's talk</div>
+      <h2>Get In<br>Touch</h2>
+      <p>Open to IT support, service desk, and technical roles in London. Feel free to reach out directly.</p>
+      <a href="mailto:saalax306@gmail.com" class="btn-primary">Send an Email</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:saalax306@gmail.com" class="contact-link">
+        <div class="contact-link-icon">✉</div>
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-text">saalax306@gmail.com</div>
+        </div>
+      </a>
+      <a href="https://linkedin.com/in/salahabdi" target="_blank" class="contact-link">
+        <div class="contact-link-icon">in</div>
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-text">linkedin.com/in/salahabdi</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="full-divider"></div>
+
+<footer>
+  <p>© 2026 Salah Abdi</p>
+  <p style="color: var(--grey); font-size:0.78rem;">Consistent. Curious. Always improving.</p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  function toggleOutside() {
+    const btn = document.getElementById('outsideToggle');
+    const content = document.getElementById('outsideContent');
+    btn.classList.toggle('open');
+    content.classList.toggle('open');
+  }
+</script>
+</body>
+</html>
