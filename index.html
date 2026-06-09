@@ -536,6 +536,33 @@
       padding: 24px 20px;
     }
   }
+  /* WhatsApp-style live demo */
+  .wa-demo-wrap { margin: 30px 0 8px; display: flex; flex-direction: column; }
+  .wa-demo-label { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
+  .wa-phone { width: 100%; max-width: 370px; align-self: center; background: #0b141a; border: 1px solid var(--border); border-radius: 18px; overflow: hidden; box-shadow: 0 12px 44px rgba(0,0,0,0.45); }
+  .wa-header { display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: #13242c; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .wa-avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--accent); color: var(--black); font-family: 'Syne', sans-serif; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .wa-name { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+  .wa-status { font-size: 0.68rem; color: var(--accent); display: flex; align-items: center; gap: 5px; }
+  .wa-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .wa-body { padding: 18px 14px; height: 400px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; background: #0b141a; scrollbar-width: none; }
+  .wa-body::-webkit-scrollbar { width: 0; height: 0; }
+  .wa-bubble { max-width: 80%; padding: 9px 12px; border-radius: 12px; font-size: 0.84rem; line-height: 1.45; font-weight: 300; animation: waPop 0.25s ease; }
+  @keyframes waPop { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .wa-in { align-self: flex-start; background: #1f2c33; color: #e9edef; border-bottom-left-radius: 3px; }
+  .wa-out { align-self: flex-end; background: #0c5847; color: #e9fff7; border-bottom-right-radius: 3px; }
+  .wa-typing { display: flex; gap: 4px; align-items: center; padding: 13px; }
+  .wa-typing span { width: 7px; height: 7px; border-radius: 50%; background: #88a; animation: waBlink 1s infinite; }
+  .wa-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .wa-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes waBlink { 0%,60%,100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-3px); } }
+  .wa-btns { align-self: flex-start; display: flex; flex-direction: column; gap: 6px; width: 80%; margin-top: 2px; }
+  .wa-btn { background: transparent; border: 1px solid rgba(0,229,160,0.4); color: var(--accent); text-align: center; padding: 9px; border-radius: 9px; font-size: 0.8rem; font-weight: 500; transition: background 0.25s, color 0.25s, transform 0.2s; }
+  .wa-btn.chosen { background: var(--accent); color: var(--black); font-weight: 700; transform: scale(1.02); }
+  .wa-btns.done { opacity: 0; max-height: 0; margin: 0; gap: 0; overflow: hidden; transition: all 0.4s ease; }
+  .wa-confirm { display: flex; gap: 10px; align-items: flex-start; }
+  .wa-check { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--black); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 800; flex-shrink: 0; }
+  .wa-sub { color: #9fb0b5; font-size: 0.74rem; }
 </style>
 </head>
 <body>
@@ -553,9 +580,9 @@
 
 <div class="hero">
   <div class="hero-content">
-    <div class="hero-tag">IT Support · Security & AI Awareness</div>
+    <div class="hero-tag">IT Support · Security · AI Automation</div>
     <h1>Salah<br><span class="line2">Abdi</span></h1>
-    <p class="hero-sub">IT Support professional with hands-on experience in troubleshooting and user support, with a growing interest in security practices and AI-driven technologies.</p>
+    <p class="hero-sub">IT Support professional with hands-on experience in troubleshooting and user support, now building AI automation systems and developing practical security skills.</p>
     <div class="hero-cta">
       <a href="#projects" class="btn-primary">View Projects</a>
       <a href="#contact" class="btn-outline">Get In Touch</a>
@@ -572,7 +599,7 @@
     <div class="about-text">
       <p>I'm an IT Support professional based in London with hands-on experience across service desk and field technician roles. I've supported user bases of 120+, managed multi-environment deployments, and consistently maintained <strong>90%+ first-contact resolution rates</strong>.</p>
       <p>My background covers Windows 10/11, Microsoft 365, Azure AD, Active Directory, Intune, and ITSM platforms like Jira and ServiceNow. I'm fluent in four languages and comfortable supporting diverse user bases under pressure.</p>
-      <p>Alongside my core IT work, I'm expanding my skills in <strong>security practices and AI-driven technologies</strong>, running hands-on home lab environments and building practical exposure to tools used in modern IT and security operations.</p>
+      <p>Alongside my core IT work, I founded <strong>Northrows</strong>, a solo AI automation venture building WhatsApp customer-assistant systems for local trades businesses. I'm also expanding my skills in <strong>security practices</strong>, running hands-on home lab environments with tools used in modern IT and security operations.</p>
     </div>
     <div class="about-stats">
       <div class="stat-box">
@@ -680,6 +707,21 @@
     <div class="exp-item">
       <div class="exp-header">
         <div>
+          <div class="exp-title">Founder & AI Automation Consultant</div>
+          <div class="exp-company">Northrows (Self-employed), London</div>
+        </div>
+        <div class="exp-date">Nov 2025 – Present</div>
+      </div>
+      <ul class="exp-bullets">
+        <li>Founded a solo AI automation venture building WhatsApp customer-assistant systems for local trades businesses such as plumbers, electricians, and locksmiths.</li>
+        <li>Designed automated workflows in Make.com, integrating Airtable, the OpenAI API, and Twilio / WhatsApp.</li>
+        <li>Owned the full build: solution design, integration, testing, troubleshooting, and client onboarding.</li>
+        <li>Ran cold outreach and live demos, translating technical capability into clear business value for non-technical owners.</li>
+      </ul>
+    </div>
+    <div class="exp-item">
+      <div class="exp-header">
+        <div>
           <div class="exp-title">IT Support Technician</div>
           <div class="exp-company">Guards On Calls, London</div>
         </div>
@@ -758,6 +800,53 @@
   <div class="projects-inner">
     <div class="section-label">What I've built</div>
     <div class="section-title fade-in">Projects</div>
+
+    <div class="featured-project fade-in">
+      <div class="project-title">AI Automation Venture: Northrows</div>
+      <p class="project-desc">Founded Northrows, a solo AI automation venture building WhatsApp customer-assistant systems for local trades businesses such as plumbers, electricians, and locksmiths. The systems capture enquiries, answer common questions, and log jobs automatically so owners stop losing work to missed calls. Built end to end and taken to real prospects through cold outreach and live demos.</p>
+      <div class="project-tech">
+        <span class="tech-tag">Make.com</span>
+        <span class="tech-tag">Airtable</span>
+        <span class="tech-tag">OpenAI GPT</span>
+        <span class="tech-tag">Twilio / WhatsApp API</span>
+        <span class="tech-tag">Webhooks</span>
+        <span class="tech-tag">API Integration</span>
+      </div>
+      <div class="wa-demo-wrap fade-in">
+        <div class="wa-demo-label">See it in action</div>
+        <div class="wa-phone">
+          <div class="wa-header">
+            <div class="wa-avatar">S</div>
+            <div class="wa-meta">
+              <div class="wa-name">Smith Plumbing</div>
+              <div class="wa-status"><span class="wa-dot"></span> AI assistant · replies instantly</div>
+            </div>
+          </div>
+          <div class="wa-body" id="waBody"></div>
+        </div>
+      </div>
+      <div class="project-details">
+        <div class="project-detail-block">
+          <h4>What I built</h4>
+          <ul>
+            <li>Designed end-to-end automation scenarios in Make.com connecting WhatsApp, AI, and a database</li>
+            <li>Built an Airtable base to store leads, jobs, and customer history</li>
+            <li>Integrated the OpenAI API to handle natural-language replies to customer enquiries</li>
+            <li>Connected Twilio / WhatsApp to send and receive messages in real time</li>
+            <li>Handled the full build: design, testing, troubleshooting, and client onboarding</li>
+          </ul>
+        </div>
+        <div class="project-detail-block">
+          <h4>Outcome</h4>
+          <ul>
+            <li>Gives small trades businesses a 24/7 first responder without hiring staff</li>
+            <li>Ran cold outreach and live demos to source clients</li>
+            <li>Strengthened practical skills in API integration, automation, and client delivery</li>
+            <li>Translates technical capability into clear, measurable business value</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <div class="featured-project fade-in">
       <div class="project-title">AI Automation Agent: SalahOS</div>
@@ -923,6 +1012,65 @@
     btn.classList.toggle('open');
     content.classList.toggle('open');
   }
+
+  // Northrows WhatsApp demo
+  (function () {
+    const waBody = document.getElementById('waBody');
+    if (!waBody) return;
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const scroll = () => { waBody.scrollTop = waBody.scrollHeight; };
+    function addBubble(html, who) {
+      const b = document.createElement('div');
+      b.className = 'wa-bubble ' + (who === 'cust' ? 'wa-out' : 'wa-in');
+      b.innerHTML = html;
+      waBody.appendChild(b); scroll();
+    }
+    async function typing(ms) {
+      const t = document.createElement('div');
+      t.className = 'wa-bubble wa-in wa-typing';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      waBody.appendChild(t); scroll();
+      await sleep(ms); t.remove();
+    }
+    function addButtons(labels) {
+      const wrap = document.createElement('div');
+      wrap.className = 'wa-btns';
+      labels.forEach((l) => { const bt = document.createElement('div'); bt.className = 'wa-btn'; bt.textContent = l; wrap.appendChild(bt); });
+      waBody.appendChild(wrap); scroll();
+      return wrap;
+    }
+    async function choose(wrap, label) {
+      const btns = [...wrap.querySelectorAll('.wa-btn')];
+      const target = btns.find((b) => b.textContent === label) || btns[0];
+      await sleep(800); target.classList.add('chosen');
+      await sleep(550); wrap.classList.add('done');
+      await sleep(250); addBubble(label, 'cust');
+    }
+    async function run() {
+      waBody.innerHTML = '';
+      await sleep(500);
+      addBubble('Hi, do you do emergency boiler repairs?', 'cust');
+      await sleep(800); await typing(1100);
+      addBubble('Yes, we cover emergency boiler repairs 24/7. What would you like to do?', 'bot');
+      const b1 = addButtons(['Book a visit', 'Get a quote', 'Talk to a person']);
+      await choose(b1, 'Book a visit');
+      await sleep(650); await typing(1000);
+      addBubble('Great. Here are the next available slots:', 'bot');
+      const b2 = addButtons(['Today, 4:00 PM', 'Tomorrow, 9:00 AM', 'Tomorrow, 1:00 PM']);
+      await choose(b2, 'Tomorrow, 9:00 AM');
+      await sleep(650); await typing(1100);
+      addBubble('<div class="wa-confirm"><div class="wa-check">&#10003;</div><div><strong>Appointment booked</strong><br>Tomorrow, 9:00 AM<br><span class="wa-sub">Engineer: Dave &middot; Ref #4471</span></div></div>', 'bot');
+      await sleep(500);
+      addBubble("You're all set. We'll text a reminder an hour before. Anything else?", 'bot');
+      await sleep(4800);
+      run();
+    }
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting && !started) { started = true; run(); } });
+    }, { threshold: 0.3 });
+    io.observe(waBody);
+  })();
 </script>
 </body>
 </html>
